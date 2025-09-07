@@ -1,4 +1,4 @@
-# Pong2025 (PWA in una cartella)
+# Pong2025
 
 Pong classico, reimmaginato come Progressive Web App. Funziona su **iOS**, **Android**, **tablet** e **desktop**: installabile, offline, full‑screen.
 
