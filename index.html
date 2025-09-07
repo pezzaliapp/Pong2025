@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
   <title>Pong2025 — PWA</title>
   <meta name="theme-color" content="#0b0f1a"/>
-  <link rel="manifest" href="manifest.json?v=3">
-  <link rel="icon" sizes="192x192" href="icon-192.png?v=3">
-  <link rel="icon" sizes="512x512" href="icon-512.png?v=3">
-  <link rel="apple-touch-icon" href="apple-touch-icon-180.png?v=3">
+  <link rel="manifest" href="manifest.json?v=4">
+  <link rel="icon" sizes="192x192" href="icon-192.png?v=4">
+  <link rel="icon" sizes="512x512" href="icon-512.png?v=4">
+  <link rel="apple-touch-icon" href="apple-touch-icon-180.png?v=4">
   <style>
     html, body { margin:0; padding:0; height:100%; background:#0b0f1a; color:#e6e8ee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; -webkit-tap-highlight-color:transparent; touch-action:none; overflow:hidden; }
     #app { position:fixed; inset: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0; display:grid; place-items:center; }
@@ -24,6 +24,7 @@
     .row > button { flex:1 1 180px; }
     .small { font-size:12px; opacity:.75; margin-top:8px; }
     .touchHint { position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:0; right:0; text-align:center; font-size:12px; opacity:.7; pointer-events:none; }
+    .rotateOverlay { position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.6); font-weight:700; font-size:16px; text-align:center; padding:20px; }
   </style>
 </head>
 <body>
@@ -42,26 +43,33 @@
   <div id="menu" class="overlay" role="dialog" aria-modal="true">
     <div class="card">
       <div class="title">Pong2025</div>
-      <p class="muted">Gioca a Pong come PWA: fluido, offline, e ottimizzato per tocchi su iOS e Android. Scegli la modalità e parti.</p>
+      <p class="muted">Pong PWA per tutti: fluido, offline, ottimizzato per iOS/Android. Seleziona modalità, velocità e qualità grafica, quindi gioca.</p>
       <div class="row">
         <button id="soloBtn">🎯 Solo (vs CPU)</button>
-        <button id="duoBtn">👥 2 Giocatori (stesso dispositivo)</button>
+        <button id="duoBtn">👥 2 Giocatori</button>
       </div>
       <div class="row">
         <button id="slowBtn">🐢 Lento</button>
         <button id="normalBtn">🚀 Normale</button>
         <button id="fastBtn">⚡ Veloce</button>
       </div>
-      <div class="small">Suggerimenti: trascina il dito nella metà sinistra (giocatore 1) o destra (giocatore 2) per muovere la racchetta. Su desktop usa W/S o ↑/↓. </div>
+      <div class="row">
+        <button id="qLowBtn">🔋 Qualità: Bassa</button>
+        <button id="qMidBtn">⚖️ Qualità: Media</button>
+        <button id="qHighBtn">🖼️ Qualità: Alta</button>
+      </div>
+      <div class="small">Suggerimento mobile: tieni lo schermo in **verticale** per la resa migliore. Se vedi questa finestra, premi una modalità per iniziare.</div>
     </div>
   </div>
 
+  <div class="rotateOverlay" id="rotateOverlay">Per la resa migliore su smartphone,<br/>tieni il dispositivo in <b>verticale</b> 📱⬆️</div>
+
   <div class="touchHint" id="touchHint">Suggerimento: trascina su/giù nella tua metà campo.</div>
 
-  <script src="app.v3.js" defer></script>
+  <script src="app.v4.js" defer></script>
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.v3.js'));
+      window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.v4.js'));
     }
   </script>
 </body>
