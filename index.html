@@ -5,22 +5,24 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
   <title>Pong2025 — PWA</title>
   <meta name="theme-color" content="#0b0f1a"/>
-  <link rel="manifest" href="manifest.json?v=4">
-  <link rel="icon" sizes="192x192" href="icon-192.png?v=4">
-  <link rel="icon" sizes="512x512" href="icon-512.png?v=4">
-  <link rel="apple-touch-icon" href="apple-touch-icon-180.png?v=4">
+  <link rel="manifest" href="manifest.json?v=4.1">
+  <link rel="icon" sizes="192x192" href="icon-192.png?v=4.1">
+  <link rel="icon" sizes="512x512" href="icon-512.png?v=4.1">
+  <link rel="apple-touch-icon" href="apple-touch-icon-180.png?v=4.1">
   <style>
     html, body { margin:0; padding:0; height:100%; background:#0b0f1a; color:#e6e8ee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; -webkit-tap-highlight-color:transparent; touch-action:none; overflow:hidden; }
     #app { position:fixed; inset: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0; display:grid; place-items:center; }
     canvas { display:block; }
     .hud { position:fixed; left:0; right:0; top:0; display:flex; justify-content:space-between; align-items:center; padding: calc(8px + env(safe-area-inset-top)) 12px 8px 12px; font-weight:600; font-size:14px; pointer-events:none; }
     .hud .btns { display:flex; gap:8px; pointer-events:auto; }
-    button { border:1px solid #2a3446; background:#111728; color:#e6e8ee; border-radius:10px; padding:8px 12px; font-weight:600; }
+    button { border:1px solid #2a3446; background:#111728; color:#e6e8ee; border-radius:10px; padding:8px 12px; font-weight:600; cursor:pointer; }
+    button.active { border-color:#4da3ff; box-shadow:0 0 0 2px rgba(77,163,255,.25) inset; }
     .overlay { position:fixed; inset:0; display:grid; place-items:center; background:rgba(5,8,15,.9); }
     .card { width:min(92vw,520px); background:#0e1424; border:1px solid #223049; border-radius:16px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.35); }
-    .title { font-size:28px; margin:4px 0 12px 0; font-weight:800; letter-spacing:.2px; }
+    .title { font-size:28px; margin:4px 0 6px 0; font-weight:800; letter-spacing:.2px; }
+    .sub { opacity:.85; font-size:13px; margin-bottom:8px; }
     .muted { opacity:.8; font-size:14px; line-height:1.45; }
-    .row { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+    .row { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
     .row > button { flex:1 1 180px; }
     .small { font-size:12px; opacity:.75; margin-top:8px; }
     .touchHint { position:fixed; bottom:calc(12px + env(safe-area-inset-bottom)); left:0; right:0; text-align:center; font-size:12px; opacity:.7; pointer-events:none; }
@@ -43,22 +45,23 @@
   <div id="menu" class="overlay" role="dialog" aria-modal="true">
     <div class="card">
       <div class="title">Pong2025</div>
+      <div class="sub" id="selLabel">Velocità: — • Qualità: —</div>
       <p class="muted">Pong PWA per tutti: fluido, offline, ottimizzato per iOS/Android. Seleziona modalità, velocità e qualità grafica, quindi gioca.</p>
       <div class="row">
         <button id="soloBtn">🎯 Solo (vs CPU)</button>
         <button id="duoBtn">👥 2 Giocatori</button>
       </div>
-      <div class="row">
+      <div class="row" id="speedRow">
         <button id="slowBtn">🐢 Lento</button>
         <button id="normalBtn">🚀 Normale</button>
         <button id="fastBtn">⚡ Veloce</button>
       </div>
-      <div class="row">
+      <div class="row" id="qualityRow">
         <button id="qLowBtn">🔋 Qualità: Bassa</button>
         <button id="qMidBtn">⚖️ Qualità: Media</button>
         <button id="qHighBtn">🖼️ Qualità: Alta</button>
       </div>
-      <div class="small">Suggerimento mobile: tieni lo schermo in **verticale** per la resa migliore. Se vedi questa finestra, premi una modalità per iniziare.</div>
+      <div class="small">Suggerimento mobile: tieni lo schermo in <b>verticale</b> per la resa migliore.</div>
     </div>
   </div>
 
@@ -66,10 +69,10 @@
 
   <div class="touchHint" id="touchHint">Suggerimento: trascina su/giù nella tua metà campo.</div>
 
-  <script src="app.v4.js" defer></script>
+  <script src="app.v4_1.js" defer></script>
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.v4.js'));
+      window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.v4_1.js'));
     }
   </script>
 </body>
