@@ -1,36 +1,8 @@
-# Pong2025
+# Pong2025 — Single-folder PWA (ottimizzata iPhone)
 
-Pong classico, reimmaginato come Progressive Web App. Funziona su **iOS**, **Android**, **tablet** e **desktop**: installabile, offline, full‑screen.
+- Loop a **tempo fisso** (60 Hz) per maggiore fluidità su Safari iOS.
+- **DPR cap a 2** per ridurre il fill‑rate su schermi retina molto densi.
+- **Overlay senza blur** (il blur è costoso su iOS).
+- **Niente sottocartelle**: tutti i file nella stessa directory.
 
-## Caratteristiche
-- Modalità **Solo (vs CPU)** e **2 Giocatori** (stesso dispositivo)
-- **Controlli touch**: trascina su/giù nella tua metà campo
-- **Tastiera**: W/S (P1), frecce ↑/↓ (P2)
-- **Velocità**: lenta, normale, veloce (salvata in `localStorage`)
-- **PWA completa**: `manifest.json`, `service-worker.js`, icone
-- **Canvas DPR-aware**: rendering nitido su schermi retina
-
-## Struttura (tutto in una cartella)
-```
-Pong2025/
-  index.html
-  app.js
-  manifest.json
-  service-worker.js
-  icons/
-    icon-192.png
-    icon-512.png
-    icon-maskable-192.png
-    icon-maskable-512.png
-    apple-touch-icon-180.png
-```
-
-## Deploy
-- Copia la cartella su un hosting statico (GitHub Pages, Netlify, tuo server).
-- Assicurati che i file siano serviti via **HTTPS** (necessario per l'installazione PWA e SW).
-- iOS: per aggiungere alla Home, apri in Safari → Condividi → **Aggiungi a Home**.
-
-## Note tecniche
-- L'IA della CPU segue la palla con una velocità dipendente dalla velocità della palla.
-- L'installazione PWA su Android/Chrome è proposta via evento `beforeinstallprompt`.
-- Il SW usa una cache **network-first con fallback** semplificato sull’HTML.
+File: `index.html`, `app.js`, `manifest.json`, `service-worker.js`, `icon-192.png`, `icon-512.png`, `icon-maskable-192.png`, `icon-maskable-512.png`, `apple-touch-icon-180.png`.
